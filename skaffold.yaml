@@ -1,0 +1,44 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:{{.BUILD_NUMBER}}"
+  artifacts:
+    - image: dynamic-grid
+      docker:
+        noCache: true
+  local:
+    push: false
+
+  # Deploy the helm chart
+deploy:
+  helm:
+    releases:
+      - name: dynamic-grid
+        chartPath: helm/charts/dynamic-grid
+        imageStrategy:
+          helm: {}
+        artifactOverrides:
+          alphaMicroService.image: dynamic-grid
+        namespace: alpha-templates
+        skipBuildDependencies: true
+    flags:
+      install: [--create-namespace]
+
+# All deployments should specify one of these profiles by adding -p <profile>
+profiles:
+  # Local deployment into Docker Desktop
+  - name: docker-desktop
+    build:
+      tagPolicy:
+        sha256: {}
+      local:
+        push: false
+
+    patches:
+
+      # add local value overrides
+      - op: add
+        path: /deploy/helm/releases/0/valuesFiles
+        value: ['docker-desktop.yaml']

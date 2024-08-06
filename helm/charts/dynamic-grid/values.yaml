@@ -1,0 +1,52 @@
+# Default values for the alphaportal.
+# This file should contain values for the lowest-level environment. All higher environments (like production) should have their own values
+# file. For production this would be named something like prodValues.yaml. No identical properties should ever exist in multiple value files.
+
+alphaMicroService:
+  name: dynamic-grid
+  port: 8080
+
+  apiType: http
+
+  endpoints:
+    - url: /dynamic-grid
+      httpResponseCacheControl: [no-store]
+
+  replicaCount: 1
+
+  image:
+    repository: dynamic-grid
+
+  livenessProbe:
+    type: httpGet
+    path: /dynamic-grid/nginx-status
+    port: 8093
+    initialDelaySeconds: 15
+    periodSeconds: 10
+
+  readinessProbe:
+    type: httpGet
+    path: /dynamic-grid/nginx-status
+    port: 8093
+    initialDelaySeconds: 15
+    periodSeconds: 10
+
+  startupProbe:
+    type: httpGet
+    path: /dynamic-grid/nginx-status
+    port: 8093
+    initialDelaySeconds: 15
+    periodSeconds: 10
+
+  resources:
+    requests:
+      memory: 4G
+    limits:
+      memory: 4G
+
+  chart:
+    version: 0.1.0
+    appVersion: 1.0
+
+  b2c:
+    isInteractive: true

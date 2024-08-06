@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/@nexus/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "paths": {
+      "@test/*": [
+        "./src/test/*"
+      ],
+      "@locales/*": [
+        "./public/locales/*"
+      ]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

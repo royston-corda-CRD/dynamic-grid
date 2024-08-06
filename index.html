@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <title>dynamic-grid App</title>
+    <% if(isDev) { %>
+      <link id="nexus-theme" type="text/css" rel="stylesheet" href="https://aptl-z1-004.dev.thealphacloud.com/nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-styles.min.css" />
+      <link id="nexus-datagrid-theme" type="text/css" rel="stylesheet" href="https://aptl-z1-004.dev.thealphacloud.com/nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-datagrid-styles.min.css" />
+      <link id="nexus-charts-theme" type="text/css" rel="stylesheet" href="https://aptl-z1-004.dev.thealphacloud.com/nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-charts-styles.min.css" />
+      <script type="systemjs-importmap" src="imports/importmap.dev.json"></script>
+      <script src="https://aptl-z1-004.dev.thealphacloud.com/nexus-assets-server/assets/systemjs/6.51.1/system.js"></script>
+    <% } else { %>
+      <link id="nexus-theme" type="text/css" rel="stylesheet" href="//nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-styles.min.css" />
+      <link id="nexus-datagrid-theme" type="text/css" rel="stylesheet" href="//nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-datagrid-styles.min.css" />
+      <link id="nexus-charts-theme" type="text/css" rel="stylesheet" href="//nexus-assets-server/assets/@nexus/1.1.1-20/styles/styles/nexus-charts-styles.min.css" />
+      <script type="systemjs-importmap" src="imports/importmap.prod.json"></script>
+      <script src="//nexus-assets-server/assets/systemjs/6.51.1/system.js"></script>
+    <% } %>
+  </head>
+  <body data-bs-theme="light">
+    <main id="root"></main>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

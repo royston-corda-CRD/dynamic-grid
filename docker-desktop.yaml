@@ -1,0 +1,27 @@
+alphaMicroService:
+
+  # Specify host name (normally this is provided by Argo CD in the Alpha environments)
+  host: local.crd.com
+
+  # Specify the Alpha tenant identifier (normally this is provided by Argo CD in the Alpha environments)
+  tenantId: test-tenant
+
+  # Indicate that service runs in localCluster mode. This is used by Standard chart to inject several configs specific to local testing.
+  localCluster: {}
+
+  # Disable auto-scaling for local cluster until we install KEDA into Docker Desktop (see JIRA CF-374)
+  autoscaling:
+    enabled: false
+
+  startupProbe:
+    timeoutSeconds: 5
+
+  livenessProbe:
+    timeoutSeconds: 5
+
+  readinessProbe:
+    timeoutSeconds: 5
+
+  apiGatewayOauth2Enabled: false
+  b2c:
+    enabled: true
